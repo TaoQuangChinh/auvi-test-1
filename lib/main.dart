@@ -1,39 +1,15 @@
-import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MyApp());
+import 'package:get/get.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Shortcuts(
-        shortcuts: <LogicalKeySet, Intent>{
-          LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
-        },
-        child: MaterialApp(
-          title: 'Better player demo',
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: [
-            const Locale('en', 'US'),
-            const Locale('pl', 'PL'),
-          ],
-          theme: ThemeData(
-            primarySwatch: Colors.green,
-          ),
-          home: AspectRatio(
-          aspectRatio: 16 / 9,
-          child: BetterPlayer.network(
-            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-            betterPlayerConfiguration: BetterPlayerConfiguration(
-              aspectRatio: 16 / 9,
-            ),
-          ),
-        ),
-        ));
-  }
+import 'app/routes/app_pages.dart';
+
+void main() {
+  runApp(
+    GetMaterialApp(
+      title: "Application",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+    ),
+  );
 }
